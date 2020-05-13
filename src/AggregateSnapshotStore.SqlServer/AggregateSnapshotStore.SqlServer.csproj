@@ -1,0 +1,42 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
+    <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageProjectUrl>https://github.com/berkaroad/AggregateSnapshotStore</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/berkaroad/AggregateSnapshotStore</RepositoryUrl>
+    <Authors>Jerry Bai</Authors>
+    <PackageId>AggregateSnapshotStore.SqlServer</PackageId>
+    <Version>1.0.0</Version>
+    <AssemblyVersion>1.0.0</AssemblyVersion>
+    <Title>AggregateSnapshotStore.SqlServer</Title>
+    <PackageIcon>_content\package.png</PackageIcon>
+    <IncludeContentInPack>true</IncludeContentInPack>
+    <ContentTargetFolders>_content</ContentTargetFolders>
+    <Description>基于sqlserver的聚合根快照存储实现</Description>
+    <Summary>基于sqlserver的聚合根快照存储实现</Summary>
+    <PackageTags>snapshot eventsourcing cqrs aggregate sqlserver</PackageTags>
+    <PackageReleaseNotes>基于sqlserver的聚合根快照存储实现
+    </PackageReleaseNotes>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Content Include="..\..\package.png">
+      <Link>_content\package.png</Link>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="dapper" Version="2.0.35" />
+    <PackageReference Include="log4net" Version="2.0.8" />
+    <PackageReference Include="System.Data.SqlClient" Version="4.7.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\AggregateSnapshotStore\AggregateSnapshotStore.csproj" />
+  </ItemGroup>
+
+</Project>

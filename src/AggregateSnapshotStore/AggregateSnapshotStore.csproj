@@ -1,0 +1,32 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
+    <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageProjectUrl>https://github.com/berkaroad/AggregateSnapshotStore</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/berkaroad/AggregateSnapshotStore</RepositoryUrl>
+    <Authors>Jerry Bai</Authors>
+    <PackageId>AggregateSnapshotStore</PackageId>
+    <Version>1.0.0</Version>
+    <AssemblyVersion>1.0.0</AssemblyVersion>
+    <Title>AggregateSnapshotStore</Title>
+    <PackageIcon>_content\package.png</PackageIcon>
+    <IncludeContentInPack>true</IncludeContentInPack>
+    <ContentTargetFolders>_content</ContentTargetFolders>
+    <Description>聚合根快照存储接口</Description>
+    <Summary>聚合根快照存储接口</Summary>
+    <PackageTags>snapshot eventsourcing cqrs aggregate</PackageTags>
+    <PackageReleaseNotes>提供聚合根快照存储接口
+    </PackageReleaseNotes>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Content Include="..\..\package.png">
+      <Link>_content\package.png</Link>
+    </Content>
+  </ItemGroup>
+
+</Project>
