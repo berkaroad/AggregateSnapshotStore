@@ -5,11 +5,12 @@ namespace AggregateSnapshotStore.MySQL.Tests
     public class MySQLAggregateSnapshotStoreTests
     {
         private MySQLAggregateSnapshotStore _store;
+        
         public MySQLAggregateSnapshotStoreTests()
         {
             _store = new MySQLAggregateSnapshotStore();
-            _store.Initialize("Server=localhost;Database=eventstore;UID=demo;PWD=123456");
-        }
+            _store.Initialize("Server=localhost;Database=SnapshotStore;UID=demo;PWD=123456");
+         }
 
         [Fact]
         public void BatchInsertMustSuccess()

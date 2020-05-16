@@ -20,13 +20,25 @@ dotnet add package AggregateSnapshotStore
 只要实现接口 `IAggregateSnapshotStore`即可。
 
 ### AggregateSnapshotStore.SqlServer
-基于 SqlServer 的聚合根快照存储实现，支持按聚合根ID作为ShardKey，进行单库水平拆分多表，分片Hash算法采用Crc16。
+基于 SqlServer 的聚合根快照存储实现，支持按聚合根ID作为ShardKey，进行单库水平拆分多表。
+
+- 分片Hash算法采用Crc16。
+
+- 分片的表名后缀为`"_<hash-index>"`,  `hash-index` 范围为 0 ～ tableCount-1
+
+如tableCount=2，则表名分别为 AggregateSnapshot_0、AggregateSnapshot_1
 
 ```
 dotnet add package AggregateSnapshotStore.SqlServer
 ```
 ### AggregateSnapshotStore.MySQL
-基于 MySQL 的聚合根快照存储实现，支持按聚合根ID作为ShardKey，进行单库水平拆分多表，分片Hash算法采用Crc16。
+基于 MySQL 的聚合根快照存储实现，支持按聚合根ID作为ShardKey，进行单库水平拆分多表。
+
+- 分片Hash算法采用Crc16。
+
+- 分片的表名后缀为`"_<hash-index>"`,  `hash-index` 范围为 0 ～ tableCount-1
+
+如tableCount=2，则表名分别为 AggregateSnapshot_0、AggregateSnapshot_1
 
 ```
 dotnet add package AggregateSnapshotStore.MySQL
@@ -34,9 +46,29 @@ dotnet add package AggregateSnapshotStore.MySQL
 
 ## 发布历史
 
-### 1.0.0
-- AggregateSnapshotStore 初版
+### AggregateSnapshotStore
 
-- AggregateSnapshotStore.SqlServer 初版
+#### 1.0.0
 
-- AggregateSnapshotStore.MySQL 初版
+初版
+
+
+### AggregateSnapshotStore.SqlServer
+
+#### 1.0.1
+
+- 修改水平拆分表的拆分Hash算法，改为crc16
+
+#### 1.0.0
+
+初版
+
+### AggregateSnapshotStore.MySQL
+
+#### 1.0.1
+
+- 修改水平拆分表的拆分Hash算法，改为crc16
+
+#### 1.0.0
+
+初版

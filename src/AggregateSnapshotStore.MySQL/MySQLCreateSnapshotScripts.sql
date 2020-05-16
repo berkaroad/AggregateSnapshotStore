@@ -6,4 +6,4 @@ CREATE TABLE `AggregateSnapshot` (
     `Data`                  BLOB(65535)		  NOT NULL,
     PRIMARY KEY(`Sequence`),
     UNIQUE KEY `ix_AggregateRootId` (`AggregateRootId`)
-) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
