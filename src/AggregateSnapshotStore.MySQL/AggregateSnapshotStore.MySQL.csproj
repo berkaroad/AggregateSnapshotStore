@@ -10,7 +10,7 @@
     <RepositoryUrl>https://github.com/berkaroad/AggregateSnapshotStore</RepositoryUrl>
     <Authors>Jerry Bai</Authors>
     <PackageId>AggregateSnapshotStore.MySQL</PackageId>
-    <Version>1.0.0</Version>
+    <Version>1.0.1</Version>
     <Title>AggregateSnapshotStore.MySQL</Title>
     <PackageIcon>_content\package.png</PackageIcon>
     <IncludeContentInPack>true</IncludeContentInPack>
@@ -18,7 +18,7 @@
     <Description>基于 MySQL 的聚合根快照存储实现</Description>
     <Summary>基于 MySQL 的聚合根快照存储实现</Summary>
     <PackageTags>snapshot eventsourcing cqrs aggregate mysql</PackageTags>
-    <PackageReleaseNotes>基于 MySQL 的聚合根快照存储实现
+    <PackageReleaseNotes>https://github.com/berkaroad/AggregateSnapshotStore
     </PackageReleaseNotes>
   </PropertyGroup>
 

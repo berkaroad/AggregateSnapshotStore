@@ -42,7 +42,7 @@ namespace AggregateSnapshotStore.SqlServer
         public async Task<AggregateSnapshotHeader> FindLatestHeaderAsync(string aggregateRootId, string aggregateRootTypeName)
         {
             string SQL = $@"
-SELECT AggregateRootId,AggregateRootTypeName,Version
+SELECT AggregateRootId,AggregateRootTypeName,[Version]
 FROM {GetTableName(aggregateRootId)}
 WHERE AggregateRootId=@AggregateRootId";
             try
@@ -73,7 +73,7 @@ WHERE AggregateRootId=@AggregateRootId";
         public async Task<AggregateSnapshotData> FindLatestAsync(string aggregateRootId, string aggregateRootTypeName)
         {
             string SQL = $@"
-SELECT AggregateRootId,AggregateRootTypeName,Version,Data
+SELECT AggregateRootId,AggregateRootTypeName,[Version],Data
 FROM {GetTableName(aggregateRootId)}
 WHERE AggregateRootId=@AggregateRootId";
             try
@@ -104,11 +104,11 @@ WHERE AggregateRootId=@AggregateRootId";
         public async Task BatchSaveAsync(IEnumerable<AggregateSnapshotData> snapshotDatas)
         {
             const string INSERT_SQL_FORMAT = @"
-INSERT INTO {0} (AggregateRootId,AggregateRootTypeName,Version,Data)
+INSERT INTO {0} (AggregateRootId,AggregateRootTypeName,[Version],Data)
 VALUES (@AggregateRootId,@AggregateRootTypeName,@Version,@Data)";
 
             const string UPDATE_SQL_FORMAT = @"
-UPDATE {0} SET Version=@Version,Data=@Data
+UPDATE {0} SET [Version]=@Version,Data=@Data
 WHERE AggregateRootId=@AggregateRootId";
 
             using (var connect = CreateConnection())
@@ -143,20 +143,6 @@ WHERE AggregateRootId=@AggregateRootId";
             }
         }
 
-        private int GetTableIndex(string aggregateRootId)
-        {
-            int hash = 23;
-            foreach (char c in aggregateRootId)
-            {
-                hash = (hash << 5) - hash + c;
-            }
-            if (hash < 0)
-            {
-                hash = Math.Abs(hash);
-            }
-            return hash % _tableCount;
-        }
-
         private string GetTableName(string aggregateRootId)
         {
             if (_tableCount <= 1)
@@ -164,7 +150,7 @@ WHERE AggregateRootId=@AggregateRootId";
                 return $"[{_tableName}]";
             }
 
-            var tableIndex = GetTableIndex(aggregateRootId);
+            var tableIndex = Crc16.GetHashCode(aggregateRootId) % _tableCount;
             return $"[{_tableName}_{tableIndex}]";
         }
 

@@ -131,20 +131,6 @@ ON DUPLICATE KEY UPDATE Version=?Version,`Data`=?Data;";
             }
         }
 
-        private int GetTableIndex(string aggregateRootId)
-        {
-            int hash = 23;
-            foreach (char c in aggregateRootId)
-            {
-                hash = (hash << 5) - hash + c;
-            }
-            if (hash < 0)
-            {
-                hash = Math.Abs(hash);
-            }
-            return hash % _tableCount;
-        }
-
         private string GetTableName(string aggregateRootId)
         {
             if (_tableCount <= 1)
@@ -152,7 +138,7 @@ ON DUPLICATE KEY UPDATE Version=?Version,`Data`=?Data;";
                 return $"`{_tableName}`";
             }
 
-            var tableIndex = GetTableIndex(aggregateRootId);
+            var tableIndex = Crc16.GetHashCode(aggregateRootId) % _tableCount;
             return $"`{_tableName}_{tableIndex}`";
         }
 

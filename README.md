@@ -20,13 +20,13 @@ dotnet add package AggregateSnapshotStore
 只要实现接口 `IAggregateSnapshotStore`即可。
 
 ### AggregateSnapshotStore.SqlServer
-基于 SqlServer 的聚合根快照存储实现。
+基于 SqlServer 的聚合根快照存储实现，支持按聚合根ID作为ShardKey，进行单库水平拆分多表，分片Hash算法采用Crc16。
 
 ```
 dotnet add package AggregateSnapshotStore.SqlServer
 ```
 ### AggregateSnapshotStore.MySQL
-基于 MySQL 的聚合根快照存储实现。
+基于 MySQL 的聚合根快照存储实现，支持按聚合根ID作为ShardKey，进行单库水平拆分多表，分片Hash算法采用Crc16。
 
 ```
 dotnet add package AggregateSnapshotStore.MySQL
