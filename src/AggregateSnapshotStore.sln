@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AggregateSnapshotStore.MySQ
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AggregateSnapshotStore.SqlServer.Tests", "AggregateSnapshotStore.SqlServer.Tests\AggregateSnapshotStore.SqlServer.Tests.csproj", "{547DB373-4096-41D8-94FC-283F5D055676}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AggregateSnapshotStore.Tests", "AggregateSnapshotStore.Tests\AggregateSnapshotStore.Tests.csproj", "{5580F95F-A497-4241-99DD-DB8ACC707839}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -86,5 +88,17 @@ Global
 		{547DB373-4096-41D8-94FC-283F5D055676}.Release|x64.Build.0 = Release|Any CPU
 		{547DB373-4096-41D8-94FC-283F5D055676}.Release|x86.ActiveCfg = Release|Any CPU
 		{547DB373-4096-41D8-94FC-283F5D055676}.Release|x86.Build.0 = Release|Any CPU
+		{5580F95F-A497-4241-99DD-DB8ACC707839}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5580F95F-A497-4241-99DD-DB8ACC707839}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5580F95F-A497-4241-99DD-DB8ACC707839}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{5580F95F-A497-4241-99DD-DB8ACC707839}.Debug|x64.Build.0 = Debug|Any CPU
+		{5580F95F-A497-4241-99DD-DB8ACC707839}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{5580F95F-A497-4241-99DD-DB8ACC707839}.Debug|x86.Build.0 = Debug|Any CPU
+		{5580F95F-A497-4241-99DD-DB8ACC707839}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5580F95F-A497-4241-99DD-DB8ACC707839}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5580F95F-A497-4241-99DD-DB8ACC707839}.Release|x64.ActiveCfg = Release|Any CPU
+		{5580F95F-A497-4241-99DD-DB8ACC707839}.Release|x64.Build.0 = Release|Any CPU
+		{5580F95F-A497-4241-99DD-DB8ACC707839}.Release|x86.ActiveCfg = Release|Any CPU
+		{5580F95F-A497-4241-99DD-DB8ACC707839}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

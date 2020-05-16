@@ -18,8 +18,7 @@ namespace AggregateSnapshotStore
         public void Initialize(int minVersionDiffNum, IAggregateSnapshotStore snapshotStore)
         {
             _snapshotStore = snapshotStore;
-            _minVersionDiffNum = 20;
-            _minVersionDiffNum = minVersionDiffNum;
+            _minVersionDiffNum = minVersionDiffNum < 1 ? 20 : minVersionDiffNum;
         }
 
         /// <summary>

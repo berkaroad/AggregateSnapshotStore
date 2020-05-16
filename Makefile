@@ -10,8 +10,9 @@ pack: build
 	mv `pwd`/src/AggregateSnapshotStore.MySQL/bin/Release/*.nupkg `pwd`/packages/
 
 test:
-	dotnet test `pwd`/src/AggregateSnapshotStore.MySQL.Tests
+	dotnet test `pwd`/src/AggregateSnapshotStore.Tests
 	#dotnet test `pwd`/src/AggregateSnapshotStore.SqlServer.Tests
+	dotnet test `pwd`/src/AggregateSnapshotStore.MySQL.Tests
 
 build:
 	dotnet build -c Release `pwd`/src/AggregateSnapshotStore/

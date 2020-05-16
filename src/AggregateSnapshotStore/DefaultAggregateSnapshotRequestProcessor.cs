@@ -17,6 +17,7 @@ namespace AggregateSnapshotStore
         private IAggregateSnapshotSaver _saver;
         private TimeSpan _interval;
         private volatile int _isRunning;
+        private volatile int _isProcessing;
 
         /// <summary>
         /// 快照请求处理器
@@ -57,6 +58,12 @@ namespace AggregateSnapshotStore
         {
             Interlocked.CompareExchange(ref _isRunning, 0, 1);
             _timer.Change(Timeout.Infinite, Timeout.Infinite);
+            Thread.Sleep(10);
+            while (_isProcessing == 1)
+            {
+                Thread.Sleep(1);
+            }
+            RunOnce();
         }
 
         /// <summary>
@@ -75,36 +82,56 @@ namespace AggregateSnapshotStore
         /// <returns></returns>
         public void Enqueue(AggregateSnapshotHeader data)
         {
+            if (!IsRunning())
+            {
+                // 未运行的，阻止入队
+                return;
+            }
             _waitForProcessDict.AddOrUpdate(data.AggregateRootId, data, (k, origin) => origin.Version > data.Version ? origin : data);
         }
 
         private void BackendExecute(object status)
         {
+            Interlocked.Exchange(ref _isProcessing, 1);
             _timer.Change(Timeout.Infinite, Timeout.Infinite);
+            try
+            {
+                RunOnce();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            finally
+            {
+                _timer.Change(_interval, _interval);
+                Interlocked.Exchange(ref _isProcessing, 0);
+            }
+        }
+
+        private void RunOnce()
+        {
             if (_waitForProcessDict.Count > 0)
             {
-                try
+                var dict = new Dictionary<string, AggregateSnapshotHeader>();
+                foreach (var key in _waitForProcessDict.Keys.ToArray())
                 {
-                    var dict = new Dictionary<string, AggregateSnapshotHeader>();
-                    foreach (var key in _waitForProcessDict.Keys.ToArray())
+                    _waitForProcessDict.TryRemove(key, out AggregateSnapshotHeader val);
+                    if (val != null)
                     {
-                        _waitForProcessDict.TryRemove(key, out AggregateSnapshotHeader val);
-                        if (val != null)
-                        {
-                            dict.Add(key, val);
-                        }
+                        dict.Add(key, val);
                     }
-                    IEnumerable<AggregateSnapshotHeader> snapshotHeaders = dict.Values;
-
-                    if (_filter != null)
-                    {
-                        snapshotHeaders = _filter.Filter(dict.Values);
-                    }
+                }
+                IEnumerable<AggregateSnapshotHeader> snapshotHeaders = dict.Values;
+                if (_filter != null)
+                {
+                    snapshotHeaders = _filter.Filter(dict.Values);
+                }
+                if (snapshotHeaders != null && snapshotHeaders.Any())
+                {
                     _saver?.SaveAsync(snapshotHeaders);
                 }
-                catch { }
             }
-            _timer.Change(_interval, _interval);
         }
     }
 }
