@@ -9,16 +9,16 @@
     <PackageProjectUrl>https://github.com/berkaroad/AggregateSnapshotStore</PackageProjectUrl>
     <RepositoryUrl>https://github.com/berkaroad/AggregateSnapshotStore</RepositoryUrl>
     <Authors>Jerry Bai</Authors>
-    <PackageId>AggregateSnapshotStore.SqlServer</PackageId>
+    <PackageId>AggregateSnapshotStore.MySQL</PackageId>
     <Version>1.0.0</Version>
-    <Title>AggregateSnapshotStore.SqlServer</Title>
+    <Title>AggregateSnapshotStore.MySQL</Title>
     <PackageIcon>_content\package.png</PackageIcon>
     <IncludeContentInPack>true</IncludeContentInPack>
     <ContentTargetFolders>_content</ContentTargetFolders>
-    <Description>基于 SqlServer 的聚合根快照存储实现</Description>
-    <Summary>基于 SqlServer 的聚合根快照存储实现</Summary>
-    <PackageTags>snapshot eventsourcing cqrs aggregate sqlserver</PackageTags>
-    <PackageReleaseNotes>基于 SqlServer 的聚合根快照存储实现
+    <Description>基于 MySQL 的聚合根快照存储实现</Description>
+    <Summary>基于 MySQL 的聚合根快照存储实现</Summary>
+    <PackageTags>snapshot eventsourcing cqrs aggregate mysql</PackageTags>
+    <PackageReleaseNotes>基于 MySQL 的聚合根快照存储实现
     </PackageReleaseNotes>
   </PropertyGroup>
 
@@ -31,7 +31,7 @@
   <ItemGroup>
     <PackageReference Include="dapper" Version="2.0.35" />
     <PackageReference Include="log4net" Version="2.0.8" />
-    <PackageReference Include="System.Data.SqlClient" Version="4.7.0" />
+    <PackageReference Include="MySql.Data" Version="8.0.20" />
   </ItemGroup>
 
   <ItemGroup>

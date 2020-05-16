@@ -1,4 +1,3 @@
--- 快照
 CREATE TABLE [dbo].[AggregateSnapshot] (
     [Sequence]              BIGINT IDENTITY (1, 1) NOT NULL,
     [AggregateRootTypeName] NVARCHAR (256)         NOT NULL,
