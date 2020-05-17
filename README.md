@@ -48,11 +48,11 @@ dotnet add package AggregateSnapshotStore.MySQL
 
 ### AggregateSnapshotStore
 
-#### 1.0.1
+#### 1.0.1（2020/5/16）
 
 - 优化 `DefaultAggregateSnapshotRequestProcessor`： 未运行时阻止入队；停止时，再次处理队列数据，直至清空
 
-#### 1.0.0
+#### 1.0.0（2020/5/13）
 
 初版
 
