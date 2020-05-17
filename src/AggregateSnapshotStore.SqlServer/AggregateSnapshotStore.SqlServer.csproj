@@ -10,7 +10,7 @@
     <RepositoryUrl>https://github.com/berkaroad/AggregateSnapshotStore</RepositoryUrl>
     <Authors>Jerry Bai</Authors>
     <PackageId>AggregateSnapshotStore.SqlServer</PackageId>
-    <Version>1.0.1</Version>
+    <Version>1.0.2</Version>
     <Title>AggregateSnapshotStore.SqlServer</Title>
     <PackageIcon>_content\package.png</PackageIcon>
     <IncludeContentInPack>true</IncludeContentInPack>

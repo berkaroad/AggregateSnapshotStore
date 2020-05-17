@@ -59,6 +59,10 @@ dotnet add package AggregateSnapshotStore.MySQL
 
 ### AggregateSnapshotStore.SqlServer
 
+#### 1.0.2
+
+- 优化水平拆分表下，不同表并行保存，以提高性能
+
 #### 1.0.1
 
 - 修改水平拆分表的拆分Hash算法，改为crc16
@@ -68,6 +72,10 @@ dotnet add package AggregateSnapshotStore.MySQL
 初版
 
 ### AggregateSnapshotStore.MySQL
+
+#### 1.0.2
+
+- 优化水平拆分表下，不同表并行保存，以提高性能
 
 #### 1.0.1
 

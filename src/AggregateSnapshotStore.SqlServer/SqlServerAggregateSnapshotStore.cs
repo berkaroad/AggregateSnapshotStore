@@ -3,12 +3,14 @@ using log4net;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
+using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace AggregateSnapshotStore.SqlServer
 {
     /// <summary>
-    /// 聚合仓储基类，用于快照获取和生成
+    /// SqlServer 聚合仓储基类，用于快照获取和生成
     /// </summary>
     public sealed class SqlServerAggregateSnapshotStore : IAggregateSnapshotStore
     {
@@ -16,6 +18,16 @@ namespace AggregateSnapshotStore.SqlServer
         private string _tableName;
         private int _tableCount;
         private ILog _logger;
+        private volatile int _successCount;
+
+        /// <summary>
+        /// 获取成功次数，仅用于测试
+        /// </summary>
+        /// <returns></returns>
+        public int GetSuccessCount()
+        {
+            return _successCount;
+        }
 
         /// <summary>
         /// 初始化
@@ -111,36 +123,56 @@ VALUES (@AggregateRootId,@AggregateRootTypeName,@Version,@Data)";
 UPDATE {0} SET [Version]=@Version,Data=@Data
 WHERE AggregateRootId=@AggregateRootId";
 
-            using (var connect = CreateConnection())
+            Interlocked.Exchange(ref _successCount, 0);
+            if (snapshotDatas == null || !snapshotDatas.Any())
             {
-                foreach (var snapshotData in snapshotDatas)
+                return;
+            }
+            var snapshotDatasGroupByTableNameDict = _tableCount <= 1 ? new Dictionary<string, IEnumerable<AggregateSnapshotData>> { { _tableName, snapshotDatas } }
+                : snapshotDatas.Select(s => new { Data = s, TableName = GetTableName(s.AggregateRootId) })
+                    .GroupBy(g => g.TableName).ToDictionary(kv => kv.Key, kv => kv.Select(s => s.Data));
+            var taskList = new List<Task>();
+            foreach (var item in snapshotDatasGroupByTableNameDict)
+            {
+                taskList.Add(Task.Factory.StartNew(async (state) =>
                 {
-                    try
+                    var currentItem = (KeyValuePair<string, IEnumerable<AggregateSnapshotData>>)state;
+                    var currentTableName = currentItem.Key;
+                    var currentSnapshotDatas = currentItem.Value;
+                    using (var connect = CreateConnection())
                     {
-                        var tableName = GetTableName(snapshotData.AggregateRootId);
-                        var updateRowCount = await connect.ExecuteAsync(string.Format(UPDATE_SQL_FORMAT, tableName), new
+                        foreach (var snapshotData in currentSnapshotDatas)
                         {
-                            AggregateRootId = snapshotData.AggregateRootId,
-                            Version = snapshotData.Version,
-                            Data = snapshotData.Data,
-                        });
-                        if (updateRowCount == 0)
-                        {
-                            await connect.ExecuteAsync(string.Format(INSERT_SQL_FORMAT, tableName), new
+                            try
                             {
-                                AggregateRootId = snapshotData.AggregateRootId,
-                                AggregateRootTypeName = snapshotData.AggregateRootTypeName,
-                                Version = snapshotData.Version,
-                                Data = snapshotData.Data,
-                            });
+                                var updateRowCount = await connect.ExecuteAsync(string.Format(UPDATE_SQL_FORMAT, currentTableName), new
+                                {
+                                    AggregateRootId = snapshotData.AggregateRootId,
+                                    Version = snapshotData.Version,
+                                    Data = snapshotData.Data,
+                                });
+                                if (updateRowCount == 0)
+                                {
+                                    await connect.ExecuteAsync(string.Format(INSERT_SQL_FORMAT, currentTableName), new
+                                    {
+                                        AggregateRootId = snapshotData.AggregateRootId,
+                                        AggregateRootTypeName = snapshotData.AggregateRootTypeName,
+                                        Version = snapshotData.Version,
+                                        Data = snapshotData.Data,
+                                    });
+                                }
+                                Interlocked.Increment(ref _successCount);
+                            }
+                            catch (Exception ex)
+                            {
+                                _logger.Error($"Save snapshot fail:{ex.Message}. AggregateRootId={snapshotData.AggregateRootId},AggregateRootTypeName={snapshotData.AggregateRootTypeName}", ex);
+                            }
                         }
                     }
-                    catch (Exception ex)
-                    {
-                        _logger.Error($"Save snapshot fail:{ex.Message}. AggregateRootId={snapshotData.AggregateRootId},AggregateRootTypeName={snapshotData.AggregateRootTypeName}", ex);
-                    }
-                }
+                    Console.WriteLine($"currentTableName={currentTableName}");
+                }, item, TaskCreationOptions.LongRunning));
             }
+            await Task.WhenAll(taskList);
         }
 
         private string GetTableName(string aggregateRootId)

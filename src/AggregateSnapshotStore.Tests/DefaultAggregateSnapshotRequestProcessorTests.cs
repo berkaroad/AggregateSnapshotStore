@@ -47,11 +47,6 @@ namespace AggregateSnapshotStore.Tests
                     }));
                 }
             }
-            while (taskList.Count < aggregateCount * versionCount)
-            {
-                Console.WriteLine("wait...");
-                Thread.Sleep(1000);
-            }
             Console.WriteLine("wait task...");
             Task.WaitAll(taskList.ToArray());
             Thread.Sleep(1000);
