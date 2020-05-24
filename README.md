@@ -21,17 +21,17 @@ dotnet add package AggregateSnapshotStore
 
 只要实现接口 `IAggregateSnapshotStore`即可。
 
-- 1） AggregateSnapshotStore.SqlServer
+### AggregateSnapshotStore.SqlServer
 基于 SqlServer 的聚合根快照存储实现，支持按聚合根ID作为ShardKey，进行单库水平拆分多表。
 
 [AggregateSnapshotStore.SqlServer](src/AggregateSnapshotStore.SqlServer/README.md)
 
-- 2） AggregateSnapshotStore.MySQL
+### AggregateSnapshotStore.MySQL
 基于 MySQL 的聚合根快照存储实现，支持按聚合根ID作为ShardKey，进行单库水平拆分多表。
 
 [AggregateSnapshotStore.MySQL](src/AggregateSnapshotStore.MySQL/README.md)
 
-- 3） AggregateSnapshotStore.Redis
+### AggregateSnapshotStore.Redis
 基于 Redis 的聚合根快照存储实现。
 
 [AggregateSnapshotStore.Redis](src/AggregateSnapshotStore.Redis/README.md)
