@@ -6,8 +6,8 @@
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
-    <PackageProjectUrl>https://github.com/berkaroad/AggregateSnapshotStore</PackageProjectUrl>
-    <RepositoryUrl>https://github.com/berkaroad/AggregateSnapshotStore</RepositoryUrl>
+    <PackageProjectUrl>https://github.com/berkaroad/AggregateSnapshotStore/tree/master/src/AggregateSnapshotStore.SqlServer</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/berkaroad/AggregateSnapshotStore.git</RepositoryUrl>
     <Authors>Jerry Bai</Authors>
     <PackageId>AggregateSnapshotStore.SqlServer</PackageId>
     <Version>1.0.2</Version>
@@ -18,7 +18,7 @@
     <Description>基于 SqlServer 的聚合根快照存储实现</Description>
     <Summary>基于 SqlServer 的聚合根快照存储实现</Summary>
     <PackageTags>snapshot eventsourcing cqrs aggregate sqlserver</PackageTags>
-    <PackageReleaseNotes>https://github.com/berkaroad/AggregateSnapshotStore
+    <PackageReleaseNotes>https://github.com/berkaroad/AggregateSnapshotStore/tree/master/src/AggregateSnapshotStore.SqlServer
     </PackageReleaseNotes>
   </PropertyGroup>
 

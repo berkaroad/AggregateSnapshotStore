@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 namespace AggregateSnapshotStore.SqlServer
 {
     /// <summary>
-    /// SqlServer 聚合仓储基类，用于快照获取和生成
+    /// SqlServer 聚合快照存储，用于快照获取和生成
     /// </summary>
     public sealed class SqlServerAggregateSnapshotStore : IAggregateSnapshotStore
     {

@@ -15,6 +15,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AggregateSnapshotStore.SqlS
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AggregateSnapshotStore.Tests", "AggregateSnapshotStore.Tests\AggregateSnapshotStore.Tests.csproj", "{5580F95F-A497-4241-99DD-DB8ACC707839}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AggregateSnapshotStore.Redis", "AggregateSnapshotStore.Redis\AggregateSnapshotStore.Redis.csproj", "{29E9DD49-359D-4008-AEC1-6B122DB9298E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AggregateSnapshotStore.Redis.Tests", "AggregateSnapshotStore.Redis.Tests\AggregateSnapshotStore.Redis.Tests.csproj", "{ABF2227B-3A53-47FF-8BB6-323248B3597B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -100,5 +104,29 @@ Global
 		{5580F95F-A497-4241-99DD-DB8ACC707839}.Release|x64.Build.0 = Release|Any CPU
 		{5580F95F-A497-4241-99DD-DB8ACC707839}.Release|x86.ActiveCfg = Release|Any CPU
 		{5580F95F-A497-4241-99DD-DB8ACC707839}.Release|x86.Build.0 = Release|Any CPU
+		{29E9DD49-359D-4008-AEC1-6B122DB9298E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{29E9DD49-359D-4008-AEC1-6B122DB9298E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{29E9DD49-359D-4008-AEC1-6B122DB9298E}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{29E9DD49-359D-4008-AEC1-6B122DB9298E}.Debug|x64.Build.0 = Debug|Any CPU
+		{29E9DD49-359D-4008-AEC1-6B122DB9298E}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{29E9DD49-359D-4008-AEC1-6B122DB9298E}.Debug|x86.Build.0 = Debug|Any CPU
+		{29E9DD49-359D-4008-AEC1-6B122DB9298E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{29E9DD49-359D-4008-AEC1-6B122DB9298E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{29E9DD49-359D-4008-AEC1-6B122DB9298E}.Release|x64.ActiveCfg = Release|Any CPU
+		{29E9DD49-359D-4008-AEC1-6B122DB9298E}.Release|x64.Build.0 = Release|Any CPU
+		{29E9DD49-359D-4008-AEC1-6B122DB9298E}.Release|x86.ActiveCfg = Release|Any CPU
+		{29E9DD49-359D-4008-AEC1-6B122DB9298E}.Release|x86.Build.0 = Release|Any CPU
+		{ABF2227B-3A53-47FF-8BB6-323248B3597B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ABF2227B-3A53-47FF-8BB6-323248B3597B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ABF2227B-3A53-47FF-8BB6-323248B3597B}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{ABF2227B-3A53-47FF-8BB6-323248B3597B}.Debug|x64.Build.0 = Debug|Any CPU
+		{ABF2227B-3A53-47FF-8BB6-323248B3597B}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{ABF2227B-3A53-47FF-8BB6-323248B3597B}.Debug|x86.Build.0 = Debug|Any CPU
+		{ABF2227B-3A53-47FF-8BB6-323248B3597B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ABF2227B-3A53-47FF-8BB6-323248B3597B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ABF2227B-3A53-47FF-8BB6-323248B3597B}.Release|x64.ActiveCfg = Release|Any CPU
+		{ABF2227B-3A53-47FF-8BB6-323248B3597B}.Release|x64.Build.0 = Release|Any CPU
+		{ABF2227B-3A53-47FF-8BB6-323248B3597B}.Release|x86.ActiveCfg = Release|Any CPU
+		{ABF2227B-3A53-47FF-8BB6-323248B3597B}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

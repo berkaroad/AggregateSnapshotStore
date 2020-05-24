@@ -1,24 +1,23 @@
 <Project Sdk="Microsoft.NET.Sdk">
-
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
-    <PackageProjectUrl>https://github.com/berkaroad/AggregateSnapshotStore/tree/master/src/AggregateSnapshotStore.MySQL</PackageProjectUrl>
+    <PackageProjectUrl>https://github.com/berkaroad/AggregateSnapshotStore/tree/master/src/AggregateSnapshotStore.Redis</PackageProjectUrl>
     <RepositoryUrl>https://github.com/berkaroad/AggregateSnapshotStore.git</RepositoryUrl>
     <Authors>Jerry Bai</Authors>
-    <PackageId>AggregateSnapshotStore.MySQL</PackageId>
-    <Version>1.0.2</Version>
-    <Title>AggregateSnapshotStore.MySQL</Title>
+    <PackageId>AggregateSnapshotStore.Redis</PackageId>
+    <Version>1.0.0</Version>
+    <Title>AggregateSnapshotStore.Redis</Title>
     <PackageIcon>_content\package.png</PackageIcon>
     <IncludeContentInPack>true</IncludeContentInPack>
     <ContentTargetFolders>_content</ContentTargetFolders>
-    <Description>基于 MySQL 的聚合根快照存储实现</Description>
-    <Summary>基于 MySQL 的聚合根快照存储实现</Summary>
-    <PackageTags>snapshot eventsourcing cqrs aggregate mysql</PackageTags>
-    <PackageReleaseNotes>https://github.com/berkaroad/AggregateSnapshotStore/tree/master/src/AggregateSnapshotStore.MySQL
+    <Description>基于 Redis 的聚合根快照存储实现</Description>
+    <Summary>基于 Redis 的聚合根快照存储实现</Summary>
+    <PackageTags>snapshot eventsourcing cqrs aggregate redis</PackageTags>
+    <PackageReleaseNotes>https://github.com/berkaroad/AggregateSnapshotStore/tree/master/src/AggregateSnapshotStore.Redis
     </PackageReleaseNotes>
   </PropertyGroup>
 
@@ -29,13 +28,11 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="dapper" Version="2.0.35" />
-    <PackageReference Include="log4net" Version="2.0.8" />
-    <PackageReference Include="MySql.Data" Version="8.0.20" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\AggregateSnapshotStore\AggregateSnapshotStore.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <PackageReference Include="log4net" Version="2.0.8" />
+    <PackageReference Include="StackExchange.Redis" Version="2.1.39" />
+  </ItemGroup>
 </Project>
