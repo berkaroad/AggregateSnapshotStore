@@ -79,15 +79,13 @@ namespace AggregateSnapshotStore.SqlServer
             }
             byte CRCHi = 0xFF;
             byte CRCLo = 0xFF;
-            int iIndex = 0;
-
             for (int i = 0; i < bytes.Length; i++)
             {
-                iIndex = CRCLo ^ (bytes[i++]);
+                var iIndex = CRCLo ^ (bytes[i]);
                 CRCLo = (byte)(CRCHi ^ aucCRCHi[iIndex]);
                 CRCHi = aucCRCLo[iIndex];
             }
-            return (ushort)(CRCHi << 8 | CRCLo);           
+            return (ushort)(CRCHi << 8 | CRCLo);
         }
     }
 }
